@@ -14,63 +14,18 @@ namespace UploadFileMVC.Controllers
             return View();
         }
 
-
         [HttpPost]
-        public ActionResult Index(HttpPostedFileBase files)
+        public ActionResult Index(IEnumerable<HttpPostedFileBase> files)
         {
-            HttpPostedFileBase file = HttpContext.Request.Files[0];
-            var fileName = Path.GetFileName(file.FileName);
-            var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
-            file.SaveAs(path);
+            //HttpPostedFileBase file = HttpContext.Request.Files[0];
+            foreach(HttpPostedFileBase file in HttpContext.Request.Files)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+                file.SaveAs(path);
+            }
 
             return RedirectToAction("Index");
         }
-        //[HttpPost]
-        //public ActionResult Index(IEnumerable<HttpPostedFileBase> files)
-        //{
-
-
-        //    foreach (var file in files)
-        //    {
-        //        if (file.ContentLength > 0)
-        //        {
-        //            var fileName = Path.GetFileName(file.FileName);
-        //            var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
-        //            file.SaveAs(path);
-        //        }
-        //    }
-        //    return RedirectToAction("Index");
-        //}
-        //[HttpPost]
-        //public ActionResult Index(IEnumerable<KeyValuePair<string,FileInfo>> files)
-        //{
-
-        //    if (files.Count() > 0)
-        //    {
-        //        foreach (var file in files)
-        //        {
-        //            //if (file.ContentLength > 0)
-        //            //{
-        //            //    var fileName = Path.GetFileName(file.FileName);
-        //            //    var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
-        //            //    file.SaveAs(path);
-        //            //}
-        //        }
-        //    }
-        //    //if (context.Request.Files.Count > 0)
-        //    //{
-        //    //    HttpFileCollection files = context.Request.Files;
-        //    //    foreach (string key in files)
-        //    //    {
-        //    //        HttpPostedFile file = files[key];
-        //    //        string fileName = file.FileName;
-        //    //        fileName = context.Server.MapPath("~/uploads/" + fileName);
-        //    //        file.SaveAs(fileName);
-        //    //    }
-        //    //}
-        //    //context.Response.ContentType = "text/plain";
-        //    //context.Response.Write("File(s) uploaded successfully!");
-        //    return RedirectToAction("Index");
-        //}
     }
 }
