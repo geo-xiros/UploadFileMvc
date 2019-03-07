@@ -16,13 +16,19 @@ $(document).ready(function () {
             let files = e.originalEvent.dataTransfer.files;
 
             //console.log(files.length);
+            var formdata = new FormData(); 
+
+            for (i = 0; i < files.length; i++) {
+                formdata.append(files[i].name, files[i]);
+                console.log(files[i]);
+            }
 
             $.ajax({
                 type: "POST",
                 url: "Home/Index", 
                 contentType: false,
                 processData: false,
-                data: files[0]
+                data: formdata
             }); 
 
         });
