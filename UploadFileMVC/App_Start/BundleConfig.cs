@@ -24,7 +24,8 @@ namespace UploadFileMVC
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/main.css"));
+                      "~/Content/site.css"));
+
             bundles.Add(new StyleBundle("~/bundles/main").Include(
                       "~/Scripts/main.js"));
         }
