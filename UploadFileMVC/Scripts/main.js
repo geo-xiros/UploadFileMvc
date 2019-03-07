@@ -23,13 +23,16 @@ $(document).ready(function () {
                 console.log(files[i]);
             }
 
-            $.ajax({
-                type: "POST",
-                url: "Home/Index", 
-                contentType: false,
-                processData: false,
-                data: formdata
-            }); 
+            sendFiles(formdata);
 
         });
+    function sendFiles(files) {
+        $.ajax({
+            type: "POST",
+            url: "Home/Index",
+            contentType: false,
+            processData: false,
+            data: files
+        }); 
+    }
 });
