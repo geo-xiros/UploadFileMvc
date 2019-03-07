@@ -15,13 +15,15 @@ $(document).ready(function () {
 
             let files = e.originalEvent.dataTransfer.files;
 
-            console.log(files.length);
+            //console.log(files.length);
 
-            for (let i = 0; i < files.length; i++) {
-                // TODO
-                // Send Files using Ajax or post to server
-                console.log(files[i]);
-            }
+            $.ajax({
+                type: "POST",
+                url: "Home/Index", 
+                contentType: false,
+                processData: false,
+                data: files[0]
+            }); 
 
         });
 });
