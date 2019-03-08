@@ -28,8 +28,9 @@ $(document).ready(function () {
         });
     function sendFiles(files) {
         $.ajax({
-            type: "POST",
-            url: "Home/Index",
+            type: 'POST',
+            url: 'Home/Index',
+            dataType:'multipart/form-data',
             contentType: false,
             processData: false,
             data: files

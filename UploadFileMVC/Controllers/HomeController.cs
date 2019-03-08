@@ -15,17 +15,24 @@ namespace UploadFileMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Index(IList<TestXXX> filesx)
         {
-            //HttpPostedFileBase file = HttpContext.Request.Files[0];
-            foreach(HttpPostedFileBase file in HttpContext.Request.Files)
+            
+            HttpFileCollectionBase files = HttpContext.Request.Files;
+
+            foreach (string file in files)
             {
-                var fileName = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
-                file.SaveAs(path);
+                var fileName = Path.GetFileName(file);
+                var path = Path.Combine(Server.MapPath("~/App_Data"), fileName);
+                files[file].SaveAs(path);
             }
 
             return RedirectToAction("Index");
         }
+    }
+    public class TestXXX
+    {
+        public string Name { get; set; }
+        public HttpPostedFileBase File { get; set; }
     }
 }
