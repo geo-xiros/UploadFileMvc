@@ -15,7 +15,7 @@ namespace UploadFileMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(IList<TestXXX> filesx)
+        public ActionResult Index(int? id)
         {
             
             HttpFileCollectionBase files = HttpContext.Request.Files;
@@ -30,9 +30,5 @@ namespace UploadFileMVC.Controllers
             return RedirectToAction("Index");
         }
     }
-    public class TestXXX
-    {
-        public string Name { get; set; }
-        public HttpPostedFileBase File { get; set; }
-    }
+
 }

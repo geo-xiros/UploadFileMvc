@@ -15,18 +15,17 @@ $(document).ready(function () {
 
             let files = e.originalEvent.dataTransfer.files;
 
-            //console.log(files.length);
             var formdata = new FormData(); 
 
             for (i = 0; i < files.length; i++) {
                 formdata.append(files[i].name, files[i]);
-                console.log(files[i]);
             }
 
             sendFiles(formdata);
 
         });
     function sendFiles(files) {
+        console.log(files);
         $.ajax({
             type: 'POST',
             url: 'Home/Index',
